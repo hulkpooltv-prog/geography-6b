@@ -1,0 +1,252 @@
+<!-- ФАЙЛ: index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>География 6Б — Индивидуальные уроки</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  color: #1e293b; line-height: 1.6; padding: 20px; min-height: 100vh;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* Шапка */
+.hero {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white; padding: 60px 30px 90px; border-radius: 24px; margin-bottom: 30px;
+  box-shadow: 0 10px 40px rgba(2,132,199,0.35); position: relative; overflow: hidden;
+  text-align: center;
+}
+.hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 14px; position: relative; z-index: 2; }
+.hero p { font-size: 17px; opacity: 0.9; position: relative; z-index: 2; max-width: 650px; margin: 0 auto; }
+.hero .stats {
+  display: flex; justify-content: center; gap: 30px; margin-top: 24px;
+  position: relative; z-index: 2; flex-wrap: wrap;
+}
+.hero .stat { text-align: center; }
+.hero .stat-num { font-size: 32px; font-weight: 800; }
+.hero .stat-label { font-size: 13px; opacity: 0.85; }
+.hero .waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 70px; z-index: 1; }
+.hero .waves svg { width: 200%; height: 100%; animation: wave 10s linear infinite; }
+.hero .waves .wave2 { animation-duration: 15s; opacity: 0.5; }
+@keyframes wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Заголовок раздела */
+.section-title {
+  font-size: 22px; font-weight: 700; color: #0369a1;
+  margin: 30px 0 20px; display: flex; align-items: center; gap: 10px;
+}
+
+/* Сетка учеников */
+.students-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.student-card {
+  background: white; border-radius: 16px; padding: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative; overflow: hidden;
+  border-top: 4px solid #0284c7;
+}
+.student-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(2,132,199,0.2); }
+.student-card .avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 22px; font-weight: 800; margin-bottom: 14px;
+}
+.student-card h3 { font-size: 17px; color: #0f172a; margin-bottom: 4px; }
+.student-card .nickname { font-size: 13px; color: #64748b; margin-bottom: 14px; }
+.student-card .lessons { display: flex; flex-wrap: wrap; gap: 8px; }
+.lesson-btn {
+  display: inline-block; background: #f0f9ff; color: #0369a1;
+  padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  text-decoration: none; border: 1.5px solid #bae6fd;
+  transition: all 0.2s;
+}
+.lesson-btn:hover { background: #0284c7; color: white; border-color: #0284c7; transform: translateY(-2px); }
+.lesson-btn.current { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; border-color: #16a34a; }
+.lesson-btn.disabled { opacity: 0.4; pointer-events: none; }
+
+/* Инфо-блок */
+.info-box {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  padding: 24px 28px; border-radius: 16px; margin-top: 30px;
+  border-left: 4px solid #16a34a;
+}
+.info-box h3 { color: #14532d; margin-bottom: 10px; font-size: 18px; }
+.info-box p { color: #166534; font-size: 15px; }
+.info-box ul { color: #166534; margin-left: 20px; margin-top: 8px; }
+.info-box li { margin-bottom: 6px; }
+
+footer { text-align: center; padding: 30px 20px; color: #64748b; font-size: 14px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>🌊 География 6Б</h1>
+  <p>Индивидуальные уроки для каждого ученика. Учись в своём темпе, задавай вопросы, проверяй себя.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">13</div><div class="stat-label">учеников</div></div>
+    <div class="stat"><div class="stat-num">31</div><div class="stat-label">урок в программе</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">темы года</div></div>
+  </div>
+  <div class="waves">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="rgba(255,255,255,0.25)"/>
+    </svg>
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="position:absolute;bottom:0;">
+      <path class="wave2" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+  </div>
+</div>
+
+<h2 class="section-title">👥 Выбери своё имя</h2>
+
+<div class="students-grid">
+
+  <div class="student-card">
+    <div class="avatar">К</div>
+    <h3>Безуглая Кира</h3>
+    <div class="nickname">Кира</div>
+    <div class="lessons">
+      <a href="urok-07-bezuglaya-kira.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">Е</div>
+    <h3>Братковский Есений</h3>
+    <div class="nickname">Сэр Большой Батут (на «Вы»)</div>
+    <div class="lessons">
+      <a href="urok-07-bratkovsky-eseniy.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">М</div>
+    <h3>Бубен Марк</h3>
+    <div class="nickname">Сэр (на «Вы»)</div>
+    <div class="lessons">
+      <a href="urok-07-buben-mark.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">В</div>
+    <h3>Василина Найденко</h3>
+    <div class="nickname">Лина</div>
+    <div class="lessons">
+      <a href="urok-07-vasilina-naydenko.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">М</div>
+    <h3>Головня Мирослав</h3>
+    <div class="nickname">Мирик</div>
+    <div class="lessons">
+      <a href="urok-07-golovnya-miroslav.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">Д</div>
+    <h3>Елисеев Данил</h3>
+    <div class="nickname">Господин</div>
+    <div class="lessons">
+      <a href="urok-07-eliseev-danil.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">В</div>
+    <h3>Зимборская Вероника</h3>
+    <div class="nickname">Мой повелитель</div>
+    <div class="lessons">
+      <a href="urok-07-zimborskaya-veronika.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">Л</div>
+    <h3>Зинченко Лера</h3>
+    <div class="nickname">Лера</div>
+    <div class="lessons">
+      <a href="urok-07-zinchenko-lera.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">Е</div>
+    <h3>Лапшина Ева</h3>
+    <div class="nickname">Лапша</div>
+    <div class="lessons">
+      <a href="urok-07-lapshina-eva.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">З</div>
+    <h3>Плут Захар</h3>
+    <div class="nickname">Плутишка повелитель</div>
+    <div class="lessons">
+      <a href="urok-07-plut-zakhar.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">А</div>
+    <h3>Пчелинцев Артём</h3>
+    <div class="nickname">Вупсень</div>
+    <div class="lessons">
+      <a href="urok-07-pchelintsev-artem.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">М</div>
+    <h3>Старцев Михаил</h3>
+    <div class="nickname">Миша</div>
+    <div class="lessons">
+      <a href="urok-07-startsev-mikhail.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+  <div class="student-card">
+    <div class="avatar">К</div>
+    <h3>Фисун Ксения</h3>
+    <div class="nickname">Роналдо</div>
+    <div class="lessons">
+      <a href="urok-07-fisun-ksenia.html" class="lesson-btn current">§35 Урок 7</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="info-box">
+  <h3>📘 Как пользоваться сайтом</h3>
+  <ul>
+    <li>Найди своё имя в списке выше.</li>
+    <li>Нажми на кнопку «§35 Урок 7» — откроется страница урока.</li>
+    <li>Читай теорию, выполняй практику, проходи тест.</li>
+    <li>Если что-то непонятно — нажми кнопку «💬 Открыть чат с учителем» на странице урока.</li>
+    <li>В конце скопируй результаты теста и отправь учителю.</li>
+  </ul>
+  <p style="margin-top:12px;"><b>📢 Напоминание:</b> на следующем занятии — проверочная работа по темам «Воды Океана» (§33) и «Реки — артерии Земли (1)» (§34). Повторите материал!</p>
+</div>
+
+<footer>
+  <p>🌊 Проект «Индивидуальные уроки географии» · 6Б класс · 2026</p>
+</footer>
+
+</div>
+</body>
+</html>

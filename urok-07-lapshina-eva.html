@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>§35. Реки — артерии Земли (2) — Лапшина Ева</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  color: #1e293b; line-height: 1.6; padding: 20px; min-height: 100vh;
+}
+.container { max-width: 900px; margin: 0 auto; }
+header {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white; padding: 50px 30px 80px; border-radius: 20px; margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(2,132,199,0.3); position: relative; overflow: hidden;
+}
+header h1 { font-size: 24px; font-weight: 800; margin-bottom: 16px; letter-spacing: 1px; position: relative; z-index: 2; }
+.student-info { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
+.student-info span { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; font-size: 14px; backdrop-filter: blur(10px); }
+.waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; z-index: 1; }
+.waves svg { width: 200%; height: 100%; animation: wave 8s linear infinite; }
+@keyframes wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.waves .wave2 { animation-duration: 12s; opacity: 0.5; }
+.announcement {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 5px solid #f59e0b; padding: 20px 24px; border-radius: 12px;
+  margin-bottom: 24px; animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { box-shadow: 0 4px 15px rgba(245,158,11,0.2); } 50% { box-shadow: 0 4px 25px rgba(245,158,11,0.4); } }
+.announcement h3 { color: #92400e; font-size: 17px; margin-bottom: 8px; }
+.announcement p { color: #78350f; font-size: 15px; }
+.announcement ul { margin-left: 20px; margin-top: 8px; color: #78350f; }
+section {
+  background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+section h2 { color: #0369a1; font-size: 22px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #e0f2fe; display: flex; align-items: center; gap: 10px; }
+section h3 { color: #075985; font-size: 18px; margin: 16px 0 10px; }
+p { margin-bottom: 12px; }
+ul, ol { margin-left: 20px; margin-bottom: 14px; }
+li { margin-bottom: 6px; }
+.svg-wrap { display: flex; justify-content: center; margin: 20px 0; }
+.svg-wrap svg { max-width: 100%; height: auto; }
+.facts { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 12px; margin: 16px 0; }
+.facts h3 { color: #92400e; margin-top: 0; }
+.facts li { color: #78350f; margin-bottom: 8px; }
+.practice-box { background: #f0f9ff; border-left: 4px solid #0284c7; padding: 20px; border-radius: 8px; margin: 16px 0; }
+.practice-box h3 { color: #0369a1; margin-top: 0; }
+.move-box { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-left: 4px solid #db2777; padding: 20px; border-radius: 8px; margin: 16px 0; }
+.move-box h3 { color: #9d174d; margin-top: 0; }
+.btn { display: inline-block; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 14px 28px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; margin: 8px 8px 8px 0; text-decoration: none; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(2,132,199,0.3); }
+.btn-chat { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); }
+.chat-block { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 20px; border-radius: 12px; text-align: center; margin-top: 16px; }
+.question { background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 16px; border-left: 4px solid #0284c7; }
+.question h4 { color: #0369a1; margin-bottom: 12px; font-size: 16px; }
+.answer { display: block; width: 100%; text-align: left; padding: 12px 16px; background: white; border: 2px solid #e2e8f0; border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; font-size: 15px; font-family: inherit; }
+.answer:hover:not(:disabled) { border-color: #0284c7; background: #f0f9ff; transform: translateX(4px); }
+.answer.correct { background: #dcfce7; border-color: #16a34a; color: #14532d; }
+.answer.wrong { background: #fee2e2; border-color: #dc2626; color: #7f1d1d; }
+.answer:disabled { cursor: default; }
+.feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 14px; display: none; }
+.feedback.show { display: block; animation: fadein 0.4s ease; }
+@keyframes fadein { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+.feedback.ok { background: #dcfce7; color: #14532d; }
+.feedback.no { background: #fee2e2; color: #7f1d1d; }
+.results-box { background: #0f172a; color: #e2e8f0; padding: 24px 20px; border-radius: 12px; font-family: monospace; font-size: 13px; white-space: pre-wrap; margin-top: 20px; position: relative; display: none; }
+.results-box.show { display: block; animation: fadein 0.4s ease; }
+.copy-btn { position: absolute; top: 10px; right: 10px; background: #16a34a; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
+.copy-btn:hover { background: #15803d; }
+.score { font-size: 20px; font-weight: 700; color: #0369a1; margin-top: 12px; }
+footer { text-align: center; padding: 20px; color: #64748b; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>§35. РЕКИ — АРТЕРИИ ЗЕМЛИ (2)</h1>
+  <div class="student-info">
+    <span>👤 Лапшина Ева</span>
+    <span>💬 Лапша</span>
+    <span>📅 Урок №7</span>
+  </div>
+  <div class="waves">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="rgba(255,255,255,0.25)"/>
+    </svg>
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="position:absolute;bottom:0;">
+      <path class="wave2" d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+  </div>
+</header>
+
+<div class="announcement">
+  <h3>📢 Внимание, Лапша! Подготовка к проверочной работе</h3>
+  <p>На следующем занятии — проверочная работа по темам:</p>
+  <ul>
+    <li><b>Урок 5.</b> §33. Воды Океана</li>
+    <li><b>Урок 6.</b> §34. Реки — артерии Земли (1)</li>
+  </ul>
+  <p style="margin-top:8px;">Повтори материал этих уроков, свои записи и определения!</p>
+</div>
+
+<section>
+  <h2>🌊 Часть 1. По каким «правилам» живёт река?</h2>
+  <p>Привет, Лапша! Сегодня мы разберём, как реки «живут» по своим правилам. Я знаю, что ты занимаешься фигурным катанием, любишь читать и очень любишь животных 🐾. Представь, что режим реки — это как программа выступления фигуриста: есть обязательные элементы и произвольная часть. Поехали! ⛸️</p>
+  
+  <p><b>Режим реки</b> — последовательность изменений уровня воды в реке в течение года.</p>
+  
+  <h3>Главные «правила» реки:</h3>
+  <ul>
+    <li>🌱 <b>Половодье</b> — продолжительный подъём уровня воды (например, весной из-за таяния снегов). Вода выходит из русла и затапливает пойму. Это как «произвольная программа» — долгая и мощная.</li>
+    <li>☀️ <b>Межень</b> — низкий уровень воды. Летом и зимой вода не выходит из русла. Это как «перерыв между выступлениями».</li>
+    <li>🌧️ <b>Паводок</b> — кратковременный подъём воды из-за сильных дождей или зимней оттепели. Это как «короткий, но яркий элемент» — резкий всплеск.</li>
+  </ul>
+  
+  <div class="svg-wrap">
+    <svg viewBox="0 0 500 200" width="100%">
+      <line x1="50" y1="170" x2="470" y2="170" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="50" y1="20" x2="50" y2="170" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="260" y="195" text-anchor="middle" fill="#64748b" font-size="12">Месяцы</text>
+      <text x="15" y="95" text-anchor="middle" fill="#64748b" font-size="12" transform="rotate(-90 15 95)">Уровень воды</text>
+      <path d="M60,140 L110,130 L160,60 L200,55 L240,100 L280,120 L310,80 L340,130 L390,150 L440,155 L460,150" 
+            stroke="#0284c7" stroke-width="3" fill="none" stroke-linejoin="round"/>
+      <circle cx="180" cy="57" r="5" fill="#16a34a"/>
+      <text x="180" y="45" text-anchor="middle" fill="#16a34a" font-size="11" font-weight="bold">Половодье</text>
+      <circle cx="310" cy="80" r="5" fill="#f59e0b"/>
+      <text x="310" y="68" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold">Паводок</text>
+      <circle cx="420" cy="152" r="5" fill="#dc2626"/>
+      <text x="420" y="142" text-anchor="middle" fill="#dc2626" font-size="11" font-weight="bold">Межень</text>
+      <text x="80" y="185" text-anchor="middle" fill="#64748b" font-size="10">Весна</text>
+      <text x="230" y="185" text-anchor="middle" fill="#64748b" font-size="10">Лето</text>
+      <text x="370" y="185" text-anchor="middle" fill="#64748b" font-size="10">Зима</text>
+    </svg>
+  </div>
+  
+  <p>💡 <b>Важно:</b> половодье зависит от климата. На Волге — весной, на Амуре — летом (влажные ветры с Тихого океана), у реки Тибр в Италии — зимой.</p>
+  <p style="font-weight:600; color:#0369a1;">ВОДНОСТЬ И РЕЖИМ РЕК СВЯЗАНЫ С ПИТАНИЕМ И КЛИМАТОМ.</p>
+  
+  <div class="move-box">
+    <h3>⛸️ Минутка активности (кинестетикам)</h3>
+    <p>Встань и покажи «программу реки» движениями, как фигуристка:</p>
+    <ol>
+      <li><b>Половодье</b> — плавное скольжение с поднятыми руками (вода прибывает).</li>
+      <li><b>Межень</b> — приседание, руки вниз (вода на низком уровне).</li>
+      <li><b>Паводок</b> — резкий прыжок вверх (быстрый подъём воды).</li>
+    </ol>
+    <p>Повтори 3 раза — как разминка перед следующим заданием!</p>
+  </div>
+</section>
+
+<section>
+  <h2>⛏️ Часть 2. Как «работают» реки?</h2>
+  <p>Река постепенно размывает горные породы, углубляя русло. Чем круче уклон — тем быстрее течение. 🏞️</p>
+  
+  <p><b>Речная долина</b> — результат длительной работы реки. Формирование долины — геологический процесс, который длится тысячи лет. Это как долгая тренировка перед выступлением — результат виден не сразу.</p>
+  
+  <div class="svg-wrap">
+    <svg viewBox="0 0 500 220" width="100%">
+      <rect x="0" y="0" width="500" height="120" fill="#e0f2fe"/>
+      <rect x="0" y="120" width="500" height="100" fill="#a16207"/>
+      <path d="M50,120 Q100,110 150,125 L350,125 Q400,110 450,120 L450,140 L50,140 Z" fill="#65a30d"/>
+      <path d="M220,125 Q250,160 280,125 L280,140 L220,140 Z" fill="#0284c7"/>
+      <text x="250" y="180" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Русло</text>
+      <rect x="50" y="100" width="80" height="20" fill="#78716c"/>
+      <rect x="370" y="100" width="80" height="20" fill="#78716c"/>
+      <text x="90" y="95" text-anchor="middle" fill="#44403c" font-size="10">Терраса</text>
+      <text x="410" y="95" text-anchor="middle" fill="#44403c" font-size="10">Терраса</text>
+      <text x="150" y="135" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Пойма</text>
+      <text x="350" y="135" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Пойма</text>
+    </svg>
+  </div>
+  
+  <h3>Пороги и водопады</h3>
+  <p>Если на пути реки встречаются твёрдые породы — образуются <b>пороги</b> (мешают судоходству). Если твёрдая порода — высокий уступ, вода падает вниз — это <b>водопад</b>.</p>
+  <ul>
+    <li>🌊 Ниагарский водопад — 50 м (Северная Америка)</li>
+    <li>🌊 Водопад Виктория — 120 м (Африка)</li>
+    <li>🌊 Водопад Анхель — 1054 м (Южная Америка) — самый высокий в мире!</li>
+  </ul>
+  
+  <h3>Равнинные и горные реки</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 500 180" width="100%">
+      <rect x="0" y="0" width="250" height="180" fill="#f0fdf4"/>
+      <path d="M0,120 Q60,110 120,125 Q180,140 250,120 L250,150 L0,150 Z" fill="#65a30d"/>
+      <path d="M20,130 Q80,125 130,132 Q190,138 240,128" stroke="#0284c7" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <text x="125" y="170" text-anchor="middle" fill="#166534" font-size="13" font-weight="bold">Равнинная река</text>
+      <text x="125" y="30" text-anchor="middle" fill="#166534" font-size="11">Медленное течение</text>
+      <text x="125" y="48" text-anchor="middle" fill="#166534" font-size="11">Широкая долина</text>
+      <rect x="250" y="0" width="250" height="180" fill="#fef2f2"/>
+      <path d="M250,150 L300,100 L340,130 L380,80 L420,110 L470,60 L500,90 L500,180 L250,180 Z" fill="#78716c"/>
+      <path d="M260,140 Q300,120 320,130 Q350,145 370,115 Q400,90 430,105 Q460,120 480,95" stroke="#0284c7" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <text x="375" y="170" text-anchor="middle" fill="#7f1d1d" font-size="13" font-weight="bold">Горная река</text>
+      <text x="375" y="30" text-anchor="middle" fill="#7f1d1d" font-size="11">Бурное течение</text>
+      <text x="375" y="48" text-anchor="middle" fill="#7f1d1d" font-size="11">Узкая глубокая долина</text>
+    </svg>
+  </div>
+  
+  <p><b>Примеры уклонов:</b> у Волги (равнинной) разница между истоком и устьем — 250 м. У Терека (горной) — почти 5000 м!</p>
+  <p style="font-weight:600; color:#0369a1;">ХАРАКТЕР ТЕЧЕНИЯ РЕКИ ЗАВИСИТ ОТ РЕЛЬЕФА ТЕРРИТОРИИ.</p>
+</section>
+
+<section>
+  <h2>✨ Это интересно!</h2>
+  <div class="facts">
+    <ol>
+      <li>🏔️ Самый высокий водопад мира — Анхель (1054 м) в Венесуэле.</li>
+      <li>🌊 Ниагарский водопад отступает примерно на 1 метр в год из-за размыва пород.</li>
+      <li>⛸️ Ледники — это тоже «реки», только изо льда. Они текут очень медленно, иногда всего несколько сантиметров в день.</li>
+      <li>🐾 Многие животные, например бобры, сами «строят» реки — создают плотины и меняют течение.</li>
+      <li>📚 Реки часто становились героями книг: например, Миссисипи в приключениях Тома Сойера и Гекльберри Финна.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>📝 Практика</h2>
+  <div class="practice-box">
+    <h3>🔹 Задание 1. Описываем реки по карте (стр. 116, «Шаг за шагом»)</h3>
+    <p>Лапша, выбери любую реку (например, Амазонку или Нил) и опиши её по плану:</p>
+    <ol>
+      <li>Найди реку на карте. Определи материк и страну (или страны).</li>
+      <li>В каком направлении протекает река?</li>
+      <li>Где исток и устье реки?</li>
+      <li>К какой речной системе относится река?</li>
+      <li>Опиши бассейн реки.</li>
+    </ol>
+    <p style="margin-top:12px; font-weight:600; color:#b45309;">⚠️ Если не успеешь выполнить на уроке — доделай дома.</p>
+  </div>
+  
+  <div class="practice-box">
+    <h3>🔹 Задание 2. «Визитная карточка» реки</h3>
+    <p>Сделай «визитную карточку» реки твоей местности: название, исток, устье, направление течения.</p>
+  </div>
+  
+  <div class="practice-box">
+    <h3>🔹 Задание 3. Сравнение рек</h3>
+    <p>Заполни таблицу в тетради:</p>
+    <table style="width:100%; border-collapse:collapse; margin-top:10px; font-size:14px;">
+      <tr style="background:#dbeafe;">
+        <th style="border:1px solid #93c5fd; padding:8px;">План</th>
+        <th style="border:1px solid #93c5fd; padding:8px;">Амазонка</th>
+        <th style="border:1px solid #93c5fd; padding:8px;">Нил</th>
+      </tr>
+      <tr><td style="border:1px solid #93c5fd; padding:8px;">Материк</td><td style="border:1px solid #93c5fd; padding:8px;">Южная Америка</td><td style="border:1px solid #93c5fd; padding:8px;">Африка</td></tr>
+      <tr><td style="border:1px solid #93c5fd; padding:8px;">Исток</td><td style="border:1px solid #93c5fd; padding:8px;">Анды</td><td style="border:1px solid #93c5fd; padding:8px;">Восточно-Африканское плоскогорье</td></tr>
+      <tr><td style="border:1px solid #93c5fd; padding:8px;">Устье</td><td style="border:1px solid #93c5fd; padding:8px;">Атлантический океан</td><td style="border:1px solid #93c5fd; padding:8px;">Средиземное море</td></tr>
+      <tr><td style="border:1px solid #93c5fd; padding:8px;">Тип реки</td><td style="border:1px solid #93c5fd; padding:8px;">Равнинная</td><td style="border:1px solid #93c5fd; padding:8px;">Равнинная</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>💬 Есть вопрос? Спроси учителя!</h2>
+  <div class="chat-block">
+    <p>Если что-то непонятно — открой чат со мной.</p>
+    <a href="https://chat.deepseek.com/" target="_blank" class="btn btn-chat">💬 Открыть чат с учителем</a>
+  </div>
+</section>
+
+<section>
+  <h2>✅ Тест (5 вопросов)</h2>
+  <p>Кликай на вариант — я сразу скажу, верно или нет, и объясню. Уровень сложности: <b>1–5</b>.</p>
+  
+  <div id="quiz">
+    <div class="question" data-correct="1">
+      <h4>Вопрос 1 (уровень 1). Что такое режим реки?</h4>
+      <button class="answer">А) Скорость течения реки</button>
+      <button class="answer">Б) Последовательность изменений уровня воды в течение года</button>
+      <button class="answer">В) Количество воды в реке</button>
+      <button class="answer">Г) Направление течения реки</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="question" data-correct="2">
+      <h4>Вопрос 2 (уровень 2). Чем половодье отличается от паводка?</h4>
+      <button class="answer">А) Ничем, это одно и то же</button>
+      <button class="answer">Б) Половодье — кратковременный, паводок — продолжительный</button>
+      <button class="answer">В) Половодье — продолжительный, паводок — кратковременный</button>
+      <button class="answer">Г) Половодье бывает только зимой</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="question" data-correct="2">
+      <h4>Вопрос 3 (уровень 3). На реках Дальнего Востока половодье бывает:</h4>
+      <button class="answer">А) Весной</button>
+      <button class="answer">Б) Зимой</button>
+      <button class="answer">В) Летом</button>
+      <button class="answer">Г) Осенью</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="question" data-correct="0">
+      <h4>Вопрос 4 (уровень 4). Почему на равнинных реках могут образовываться пороги?</h4>
+      <button class="answer">А) Из-за выхода твёрдых пород, которые река размывает медленнее</button>
+      <button class="answer">Б) Из-за сильного течения</button>
+      <button class="answer">В) Из-за большого количества воды</button>
+      <button class="answer">Г) Из-за таяния ледников</button>
+      <div class="feedback"></div>
+    </div>
+    <div class="question" data-correct="0">
+      <h4>Вопрос 5 (уровень 5). Как характер течения реки связан с рельефом?</h4>
+      <button class="answer">А) На равнинах течение медленное, в горах — бурное, зависит от уклона</button>
+      <button class="answer">Б) Течение не зависит от рельефа</button>
+      <button class="answer">В) В горах реки текут медленно, на равнинах — быстро</button>
+      <button class="answer">Г) Течение зависит только от климата</button>
+      <div class="feedback"></div>
+    </div>
+  </div>
+  
+  <div class="score" id="score"></div>
+  <div class="results-box" id="results">
+    <button class="copy-btn" onclick="copyResults()">📋 Скопировать</button>
+    <span id="resultsText"></span>
+  </div>
+</section>
+
+<section>
+  <h2>🤔 Рефлексия</h2>
+  <p>Лапша, ответь развёрнуто на вопросы:</p>
+  <ol>
+    <li><b>Эмоции:</b> Что тебя удивило или порадовало на уроке?</li>
+    <li><b>Знания:</b> Что нового ты узнала о реках?</li>
+    <li><b>Трудности:</b> Что показалось трудным? Что помогло справиться?</li>
+    <li><b>Польза:</b> Где ты сможешь применить эти знания?</li>
+  </ol>
+</section>
+
+<section style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+  <h2 style="color:#1e40af; border-color:#93c5fd;">📚 Домашнее задание</h2>
+  <ol>
+    <li>Изучить §35.</li>
+    <li>Устно ответить на вопросы в конце параграфа.</li>
+    <li>Быть готовым к общению с учителем по содержанию параграфа.</li>
+    <li>Доделать практическое задание «Описание реки по карте» (если не успела на уроке).</li>
+  </ol>
+</section>
+
+<footer>
+  <p>🌊 Урок географии для 6Б · Лапшина Ева · §35</p>
+</footer>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+let correctCount = 0;
+let answeredCount = 0;
+const total = 5;
+const resultsBox = document.getElementById('results');
+const resultsText = document.getElementById('resultsText');
+const scoreEl = document.getElementById('score');
+const explanations = {
+  0: 'Режим реки — это последовательность изменений уровня воды в течение года.',
+  1: 'Половодье — продолжительный подъём, паводок — кратковременный.',
+  2: 'На Дальнем Востоке половодье летом — влажные ветры с Тихого океана приносят дожди.',
+  3: 'Твёрдые породы размываются медленнее, поэтому образуются пороги.',
+  4: 'Характер течения зависит от уклона: на равнинах медленное, в горах бурное.'
+};
+
+document.querySelectorAll('.question').forEach((q, index) => {
+  const correctIdx = parseInt(q.dataset.correct);
+  const buttons = q.querySelectorAll('.answer');
+  const feedback = q.querySelector('.feedback');
+  
+  buttons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      buttons.forEach(b => b.disabled = true);
+      
+      if (i === correctIdx) {
+        btn.classList.add('correct');
+        correctCount++;
+        feedback.className = 'feedback show ok';
+        feedback.textContent = '✅ Верно! ' + explanations[index];
+      } else {
+        btn.classList.add('wrong');
+        buttons[correctIdx].classList.add('correct');
+        feedback.className = 'feedback show no';
+        feedback.textContent = '❌ Неверно. ' + explanations[index];
+      }
+      
+      answeredCount++;
+      if (answeredCount === total) showResults();
+    });
+  });
+});
+
+function showResults() {
+  scoreEl.textContent = 'Ваш результат: ' + correctCount + ' из ' + total;
+  const mistakes = [];
+  document.querySelectorAll('.question').forEach((q, i) => {
+    if (q.querySelector('.answer.wrong')) mistakes.push('№' + (i+1));
+  });
+  
+  const recommendation = correctCount === 5 ? 'идти дальше' :
+                         correctCount === 4 ? 'закрепить тему' : 'повторить тему';
+  const nextLevel = correctCount === 5 ? '2–6' :
+                    correctCount === 4 ? '1–5' : '1–5 (возврат)';
+  
+  resultsText.textContent = `=== РЕЗУЛЬТАТЫ ДЛЯ УЧИТЕЛЯ ===
+Ученик: Лапшина Ева
+Обращение: Лапша
+Урок №: 7
+Тема: Реки — артерии Земли (2)
+Дата: ${new Date().toLocaleDateString('ru-RU')}
+
+ТЕСТ: ${correctCount} из 5
+Уровень сложности теста: 1–5
+Ошибки (номера): ${mistakes.length ? mistakes.join(', ') : 'нет'}
+Тип ошибки: [заполняется учителем]
+
+РЕФЛЕКСИЯ:
+- Эмоции: [ответ ученика]
+- Знания: [ответ ученика]
+- Трудности: [ответ ученика]
+- Польза: [ответ ученика]
+
+ВЫВОД:
+- Освоение темы: [освоена / частично / не освоена]
+- Рекомендация: ${recommendation}
+- Следующий уровень теста: ${nextLevel}
+=== КОНЕЦ РЕЗУЛЬТАТОВ ===`;
+  resultsBox.classList.add('show');
+}
+
+function copyResults() {
+  navigator.clipboard.writeText(resultsText.textContent).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Скопировано!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => alert('Не удалось скопировать. Выделите текст вручную.'));
+}
+</script>
+
+</body>
+</html>
